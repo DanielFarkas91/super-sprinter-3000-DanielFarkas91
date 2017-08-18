@@ -8,30 +8,31 @@
 </head>
 <body>
     <h1>User Story Manager</h1>
-    <form action="/" method="POST">
-        <p><button type="submit" value="new_story"		 
-                            formtarget="_blank" 
-                            formaction="/story" 
-                            formmethod="get"> Add new User Story</button></p>
+    <form action="/">
+        <p><button type="submit">Add new User Story</button></p>
 
             <p><table border="1">
                     <tr>
-                        <td> ID </td>
-                        <td> Story Title </td>
-                        <td> User Story </td>
-                        <td> Acceptance Criteria </td>
-                        <td> Business Value </td>
-                        <td> Estimation </td>
-                        <td> Status </td>
-                    </tr>
-                    <tr>
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
-                        <td>  </td>
+                        <thead>
+                            <td> ID </td>
+                            <td> Story Title </td>
+                            <td> User Story </td>
+                            <td> Acceptance Criteria </td>
+                            <td> Business Value </td>
+                            <td> Estimation </td>
+                            <td> Status </td>
+                        </thead>
+                        <tbody>
+                            {% for line in text_list %}
+                            <td> {{text_list[0]}} </td>
+                            <td> {{text_list[1]}} </td>
+                            <td> {{text_list[2]}} </td>
+                            <td> {{text_list[3]}} </td>
+                            <td> {{text_list[4]}} </td>
+                            <td> {{text_list[5]}} </td>
+                            <td> {{text_list[6]}} </td>
+                            {% endfor %}
+                        </tbody>
                     </tr>
             </table>
 </body>
