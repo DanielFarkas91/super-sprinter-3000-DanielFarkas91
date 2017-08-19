@@ -8,9 +8,13 @@
 </head>
 <body>
     <h1>User Story manager - Add new Story</h1>
-    <form action="/save-story" method=["GET","POST"]>
+    {% if edit%}
+    <form action="/edit-story/{{new_text_list[0]}}" method="POST">
+    {%else%}
+    <form action="/save-story" method="POST">
+    {%endif%}
 
-        <input name="user_id" value="{{user_id}}"></p>
+        <input name="user_id" value="{{user_id}}" type="hidden"></p>
 
         <p><label for="title">Story Title</label><br>
         <input type="text" name="title" id="title" size="56" value="{{new_text_list[1] if edit else''}}"></p>
