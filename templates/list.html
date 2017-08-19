@@ -6,14 +6,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Super Sprinter 3000 Story</title>
 </head>
-<body>
-    <h1>User Story Manager</h1>
-    <form action="/story">
+<body style="background-color:black;">
+    <h1 style="color:red;"> User Story Manager </h1>
+    
+    <form action="/story" method="GET">
         <p><button type="submit">Add new User Story</button></p>
 
             <p><table border="1">
                     <tr>
-                        <thead>
+                        <thead style="color:red;">
                             <td> ID </td>
                             <td> Story Title </td>
                             <td> User Story </td>
@@ -22,7 +23,7 @@
                             <td> Estimation </td>
                             <td> Status </td>
                         </thead>
-                        <tbody>
+                        <tbody style="color:white;">
                             {% for line in text_list %}
                             {% if line[7] is not defined %}
                         <tr>
@@ -33,6 +34,8 @@
                             <td> {{line[4]}} </td>
                             <td> {{line[5]}} </td>
                             <td> {{line[6]}} </td>
+                            <td style="background-color:white;"> <a href="/story/{{line[0]}}" ><img src="//www.shareicon.net/data/128x128/2016/07/17/797331_edit_512x512.png" width="40" height="20"alt="Pen"></td>
+                            <td style="background-color:white;"> <a href="/delete/{{line[0]}}"><img src="https://www.shareicon.net/data/128x128/2016/10/11/842403_multimedia_512x512.png" width="40" height="20" alt="Bin"></td>
                         </tr>
                     {% endif %}
                     {% endfor %}

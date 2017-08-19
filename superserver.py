@@ -14,11 +14,6 @@ def csv_reader(file_name):
 @app.route('/')
 def route_index():
     text_list = csv_reader("data.csv")
-    if text_list:
-        user_id = text_list[0][0]
-    else:
-        user_id = 0
-    
     return render_template('list.html', text_list=text_list)
 
 
@@ -28,12 +23,14 @@ def route_list():
 
 
 @app.route('/story')
-def route_form():
-    user_id = None
-    if user_id == None:
-        user_id = 1
-    else:
-        user_id += 1
+def route_story():
+    edit = False
+    text_list = csv_reader("data.csv")
+    for i in range(len(text_list)):
+        if text_list[i][0]:
+            user_id = int(text_list[i][0]) + 1
+        else:
+            user_id = 0
     return render_template('form.html', user_id=user_id)
 
 
@@ -57,6 +54,38 @@ def route_save():
                 'status': status})
     return redirect('/')
 
+@app.route('/story/<id>')
+def route_story_id(id=None):
+    edit = True
+    user_id = id
+    id = int(id)
+    text_list = csv_reader("data.csv")
+    new_text_list = text_list[id]
+    fieldnames = ['user_id', 'title', 'story', 'criteria', 'value', 'estimation', 'status']
+    return render_template('form.html', user_id=user_id, edit=edit, fieldnames=fieldnames, new_text_list=new_text_list)
+
+@app.route('/edit-story/<id>', methods=['POST'])
+def route_edit_story(id=None):
+    text_list = csv_reader("data.csv")
+    user_id = id
+    id = int(id)
+    print('POST EDIT!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! request received!')
+    if request.method == 'POST':
+        title = request.form['title']
+        story = request.form['story']
+        criteria = request.form['criteria']
+        value = request.form['value']
+        estimation = request.form['estimation']
+        status = request.form['status']
+        user_id = request.form.get("user_id")
+        fieldnames = ['user_id', 'title', 'story', 'criteria', 'value', 'estimation', 'status']
+        with open("data.csv", "w", newline="") as csv_file:
+            writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            writer.writerow({
+                'user_id': user_id, 'title': title, 'story': story,
+                'criteria': criteria, 'value': value, 'estimation': estimation,
+                'status': status})
+    return redirect('/')
 
 
 if __name__ == "__main__":
