@@ -4,28 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Super Sprinter 3000 Story</title>
+    <title>Super Sprinter 3000</title>
 </head>
-<body style="background-color:black;">
-    <h1 style="color:red;"> User Story Manager </h1>
+<body style="background-color:darkblue;">
+    <h1 style="color:greenyellow;"> User Story Manager </h1>
     
     <form action="/story" method="GET">
-        <p><button type="submit">Add new User Story</button></p>
+        <p><button type="submit" id="submit3">Add new User Story</button></p>
 
             <p><table border="1">
-                    <tr>
-                        <thead style="color:red;">
-                            <td> ID </td>
-                            <td> Story Title </td>
-                            <td> User Story </td>
-                            <td> Acceptance Criteria </td>
-                            <td> Business Value </td>
-                            <td> Estimation </td>
-                            <td> Status </td>
-                        </thead>
-                        <tbody style="color:white;">
-                            {% for line in text_list %}
-                            {% if line[7] is not defined %}
+                <tr>
+                    <thead  style="background-color:greenyellow;">
+                        <td><strong> ID </strong></td>
+                        <td><strong> Story Title </strong></td>
+                        <td><strong> User Story </strong></td>
+                        <td><strong> Acceptance Criteria </strong></td>
+                        <td><strong> Business Value </strong></td>
+                        <td><strong> Estimation </strong></td>
+                        <td><strong> Status </strong></td>
+                    </thead>
+                    <tbody style="background-color:greenyellow;">
+                        {% for line in text_list %}
                         <tr>
                             <td> {{line[0]}} </td>
                             <td> {{line[1]}} </td>
@@ -34,11 +33,10 @@
                             <td> {{line[4]}} </td>
                             <td> {{line[5]}} </td>
                             <td> {{line[6]}} </td>
-                            <td style="background-color:white;"> <a href="/story/{{line[0]}}" ><img src="//www.shareicon.net/data/128x128/2016/07/17/797331_edit_512x512.png" width="40" height="20"alt="Pen"></td>
-                            <td style="background-color:white;"> <a href="/delete/{{line[0]}}"><img src="https://www.shareicon.net/data/128x128/2016/10/11/842403_multimedia_512x512.png" width="40" height="20" alt="Bin"></td>
+                            <td> <a href="/story/{{line[0]}}" ><img src="//www.shareicon.net/data/128x128/2016/07/17/797331_edit_512x512.png" width="40" height="20"alt="Pen"></td>
+                            <td> <a href="/delete/{{line[0]}}"><img src="https://www.shareicon.net/data/128x128/2016/10/11/842403_multimedia_512x512.png" width="40" height="20" alt="Bin"></td>
                         </tr>
-                    {% endif %}
-                    {% endfor %}
+                        {% endfor %}
                     </tbody>
                 </table>
 </body>

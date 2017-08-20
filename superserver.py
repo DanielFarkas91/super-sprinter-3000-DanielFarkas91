@@ -25,8 +25,29 @@ def route_story():
     for i in range(len(text_list)):
         if text_list[i][0]:
             user_id = int(text_list[i][0]) + 1
-    print(user_id)
     return render_template('form.html', user_id=user_id)
+
+
+@app.route('/story/<int:id>')
+def route_story_id(id=None):
+    user_id = id
+    edit = True
+    text_list = csv_reader("data.csv")
+    new_text_list = text_list[id]
+    return render_template('form.html', user_id=user_id, edit=edit, new_text_list=new_text_list)
+
+
+@app.route("/delete/<id>")
+def route_delete_story(id=None):
+    text_list = csv_reader("data.csv")
+    for i in range(0, len(text_list)):
+        if id == text_list[i][0]:
+            del text_list[i]
+            with open("data.csv", "w", newline="") as csvfile:
+                writer = csv.writer(csvfile)
+                writer.writerows(text_list)
+            break
+    return redirect('/')
 
 
 @app.route('/save-story', methods=['POST'])
@@ -49,15 +70,7 @@ def route_save():
     return redirect('/')
 
 
-@app.route('/story/<id>')
-def route_story_id(id=None):
-    user_id = id
-    edit = True
-    text_list = csv_reader("data.csv")
-    new_text_list = text_list[int(id)]
-    return render_template('form.html', user_id=user_id, edit=edit, new_text_list=new_text_list)
-
-@app.route('/edit-story/<id>', methods=['POST'])
+@app.route('/edit-story/<int:id>', methods=['POST'])
 def route_edit_story(id=None):
     text_list = csv_reader("data.csv")
     if request.method == 'POST':
@@ -67,9 +80,7 @@ def route_edit_story(id=None):
         value = request.form['value']
         estimation = request.form['estimation']
         status = request.form['status']
-        user_id = request.form.get("user_id")
-        user_id = int(user_id)
-        text_list[user_id] = [user_id, title, story, criteria, value, estimation, status]
+        text_list[id] = [id, title, story, criteria, value, estimation, status]
         with open("data.csv", "w", newline="") as csvfile:
             writer = csv.writer(csvfile)
             writer.writerows(text_list)

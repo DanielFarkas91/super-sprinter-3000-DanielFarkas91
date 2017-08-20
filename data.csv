@@ -1,3 +1,8 @@
-0,a,aa,aaa,100,0.5,Planning
-1,b,bb,bbb,300,2.5,Done
-2,cc,ccccccccc,ccccccccccccccccccccccccccccccccccc,700,12.5,Review
+0,First Story,aaaaaaaa,aaaaaaa,100,1,Planning
+1,Second Story,bbbbb,MODIFIED!,300,8,TODO
+3,DURVA,Hogy html-ben is lehet színezni,fuck css,300,4.5,In Progress
+4,Firffydvbasreqst Story,aaaaaaaa,aaaaaaa,100,1,Planning
+7,DadgsgagURVA,Hogy html-ben is lehet színezni,fuck css,300,4.5,In Progress
+8,Firagdst Story,aaaaaaaa,aaaaaaa,100,1,Planning
+9,Secofvgycvxnd Story,bbbbb,Madsfafa,300,8,TODO
+11,DURbybyfVA,Hogy html-ben is lehet színezni,fuck css,300,4.5,Done
